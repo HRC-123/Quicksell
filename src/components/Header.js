@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 
-
-const Header = () => {
-  const [grouping, setGrouping] = useState('Status');
-  const [ordering, setOrdering] = useState('Priority');
+const Header = ({ grouping, setGrouping, ordering, setOrdering }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const handleGroupingChange = (event) => {
-    setGrouping(event.target.value);
+  const handleGroupingChange = (e) => {
+    setGrouping(e.target.value);
   };
 
-  const handleOrderingChange = (event) => {
-    setOrdering(event.target.value);
+  const handleOrderingChange = (e) => {
+    setOrdering(e.target.value);
   };
 
   return (
@@ -33,8 +30,8 @@ const Header = () => {
                 onChange={handleGroupingChange}
               >
                 <option value="Status">Status</option>
-                <option value="Type">Type</option>
-                <option value="Date">Date</option>
+                <option value="User">User</option>
+                <option value="Priority">Priority</option>
               </select>
             </div>
             <div className="dropdown-option">
@@ -45,8 +42,7 @@ const Header = () => {
                 onChange={handleOrderingChange}
               >
                 <option value="Priority">Priority</option>
-                <option value="Date">Date</option>
-                <option value="Name">Name</option>
+                <option value="Title">Title</option>
               </select>
             </div>
           </div>

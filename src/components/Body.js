@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GridComp from "./GridComp";
 
-const Body = () => {
+const Body = ({ grouping, ordering }) => {
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
   const [userGroupedTickets, setUserGroupedTickets] = useState([]);
@@ -83,15 +83,39 @@ const Body = () => {
     }
     return{};
   }
-  return (
-    <div className="body-container">
-      {Object.entries(priorityGroupedTickets).map(([userId, userTickets]) => (
-        <div key={userId}>
-          <GridComp user ={usersCheck(userId)} tickets={userTickets}  />
-        </div>
-      ))}
-    </div>
-  );
+  if(grouping === 'Priority'){
+    return (
+      <div className="body-container">
+        {Object.entries(priorityGroupedTickets).map(([userId, userTickets]) => (
+          <div key={userId}>
+            <GridComp user ={usersCheck(userId)} tickets={userTickets} grouping={grouping} ordering={ordering}  />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  else if(grouping === 'Status'){
+    return (
+      <div className="body-container">
+        {Object.entries(statusGroupedTickets).map(([userId, userTickets]) => (
+          <div key={userId}>
+            <GridComp user ={usersCheck(userId)} tickets={userTickets} grouping={grouping} ordering={ordering}  />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  else if(grouping === 'User'){
+    return (
+      <div className="body-container">
+        {Object.entries(userGroupedTickets).map(([userId, userTickets]) => (
+          <div key={userId}>
+            <GridComp user ={usersCheck(userId)} tickets={userTickets} grouping={grouping} ordering={ordering} />
+          </div>
+        ))}
+      </div>
+    );
+  }
 };
 
 export default Body;
